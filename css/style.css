@@ -1,0 +1,357 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap");
+
+#app {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+:root {
+  --bg: yellow;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: monospace;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #0a3c2f;
+}
+.container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    background: #0d614b;
+    padding: 40px 6px;
+    z-index: 1;
+}
+
+h2{
+    font-size: 3em;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing:.1rem;
+}
+.win{
+  width: 230px;
+  height: 300px;
+  color: white;
+  background-color: rgb(37, 201, 201);
+  
+  text-transform: uppercase;
+  letter-spacing: .1rem;
+  font-size: 3rem;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  border-radius: 23px;
+  box-shadow:  5px 5px 5px black;
+  z-index: 3;
+  background-image: linear-gradient(to bottom right,  #188a6b, #82aca1);
+}
+
+.reset{
+    padding: 15px 20px;
+    color: #267c65;
+   
+    background: #fff;
+    border: none;
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 600;
+}
+.reset:hover{
+  box-shadow: 1px 1px 10px 1px  rgb(34, 17, 17) ;
+}
+.reset:focus{
+    color: #fff;
+    background: #267c65;
+}
+
+.game{
+    width: 440px;
+    height: 440px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    transform-style: preserve-3d;
+    perspective: 500px;
+}
+.item{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+    background: #fff;
+   /* box-shadow: 1px 1px 10px 1px  rgb(34, 17, 17) ;*/
+    transform: rotateY(180deg);
+    transition: 0.25s;
+}
+.item:hover::after{
+ background-color: #155041;
+ box-shadow: 1px 1px 10px 1px  rgb(34, 17, 17) ;
+
+
+}
+.item.boxOpen{
+    transform: rotateY(0deg);
+}
+
+.item::after{
+    content:'';
+    position: absolute;
+    inset: 0;
+    background: #209d7b;
+    box-shadow: 1px 1px 10px 1px  rgb(34, 17, 17) ;
+    transition: 00.25s;
+    transform: rotateY(0deg);
+    backface-visibility: hidden;
+}
+
+.boxOpen::after, 
+.boxMatch::after{
+    transform: rotateY(180deg);
+}
+
+.confetti-container{
+   /* user-select: none;
+    pointer-events: none;*/
+    z-index: 10 ;
+  }
+  .confetti{
+    position: fixed;
+    left: 0;
+    right: 0;
+    display: flex;
+  }
+  .confetti .square{
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--bg);
+    transform: rotate(140deg);
+  }
+  .confetti .rectangle{
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--bg);
+  }
+
+  .confetti .hexagram{
+    width: 0;
+    height: 0;
+    border-left: 0.5rem solid transparent;
+    border-right: 0.5rem solid transparent;
+    border-top: 1rem solid var(--bg);
+    position: relative;
+  }
+  .confetti .hexagram:after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 0.5rem solid transparent;
+    border-right: 0.5rem solid transparent;
+    border-top: 1rem solid var(--bg);
+    position: absolute;
+    top: 0.33rem;
+    left: -0.5rem;
+  }         
+
+  .confetti .pentagram {
+    width: 0rem;
+    height: 0rem;
+    display: block;
+    margin: 0.5rem 0;
+    border-right: 1rem solid transparent;
+    border-bottom: 0.7rem solid var(--bg);
+    border-left: 1rem solid transparent;
+    transform: rotate(35deg);
+    position: relative;
+  }
+  .confetti .pentagram:before {
+    border-bottom: 0.8rem solid var(--bg);
+    border-left: 0.3rem solid transparent;
+    border-right: 0.3rem solid transparent;
+    position: absolute;
+    height: 0;
+    width: 0;
+    top: -0.45rem;
+    left: -0.65rem;
+    display: block;
+    content: "";
+    transform: rotate(-35deg);
+  }
+  .confetti .pentagram:after {
+    position: absolute;
+    display: block;
+    color: var(--bg);
+    top: 0.03rem;
+    left: -1.05rem;
+    width: 0rem;
+    height: 0rem;
+    border-right: 1rem solid transparent;
+    border-bottom: 0.7rem solid var(--bg);
+    border-left: 1rem solid transparent;
+    transform: rotate(-70deg);
+    content: "";
+  }
+  .confetti .dodecagram {
+    background: var(--bg);
+    width: 8px;
+    height: 8px;
+    position: relative;
+  }
+  
+  .confetti .dodecagram:before {
+    content: "";
+    height: 8px;
+    width: 8px;
+    background: var(--bg);
+    transform: rotate(30deg);
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .confetti .dodecagram:after {
+    content: "";
+    height: 8px;
+    width: 8px;
+    background: var(--bg);
+    transform: rotate(60deg);
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .confetti .wavy-line {
+    position: relative;
+  }
+  .confetti .wavy-line::after,
+  .confetti .wavy-line::before {
+    content: "";
+    height: 10px;
+    width: 80px;
+    background-size: 20px 10px;
+    position: absolute;
+    left: -9rem;
+    transform: rotate(90deg);
+  }
+  
+  .confetti .wavy-line::before {
+    background-image: linear-gradient(
+      45deg,
+      transparent,
+      transparent 50%,
+      var(--bg) 50%,
+      transparent 60%
+    );
+    top: 1rem;
+  }
+  .confetti .wavy-line::after {
+    background-image: linear-gradient(
+      -45deg,
+      transparent,
+      transparent 50%,
+      var(--bg) 50%,
+      transparent 60%
+    );
+  }
+
+  .confetti i {
+    width: 3rem;
+    height: 3rem;
+    margin: 0 0.2rem;
+    animation-name: confetti;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-duration: calc(60s / var(--speed));
+  }
+  
+  .confetti i:nth-child(even) {
+    transform: rotate(90deg);
+  }
+  
+  @keyframes confetti {
+    0% {
+      transform: translateY(-100vh);
+    }
+  
+    100% {
+      transform: translateY(100vh);
+    }
+  }
+
+  input:checked + .confetti-container i {
+    /*display: none; */
+    animation-play-state: paused;
+  }
+  .confetti {
+    position: fixed;
+    left: 0;
+    right: 0;
+    display: flex;
+    /*width: 600px;
+    height: 600px;
+    overflow: hidden;*/
+  }
+
+.youwin{
+  font-size:16px;
+  animation: text-grow-shrink 3s infinite;
+}
+.win{
+  animation: color-grow-shrink 3s infinite;
+
+}
+
+
+
+@keyframes color-grow-shrink{
+  0%{
+    font-size: 16px;
+    box-shadow:  -23px -15px 145px black;
+  }
+  50%{
+    font-size: 34px;
+    box-shadow:  -13px -10px 90px black;
+    
+  }
+  100%{
+    font-size: 16px;
+    background-image: linear-gradient(to bottom right,#82aca1 , #188a6b);
+    box-shadow:  -23px -15px 45px black;
+    
+  }
+}
+
+@keyframes text-grow-shrink {
+  0%{
+    font-size: 16px;
+  }
+  50%{
+    font-size: 34px;
+    
+  }
+  100%{
+    font-size: 16px;
+   
+    
+  }
+}
+
+
